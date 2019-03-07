@@ -1,0 +1,28 @@
+
+pain_v1.2		2007.11.22.
+
+új parancs:	R	(nagy R, enter nem kell) : reseteli a vezérlõt
+
+forráskód módosítás (parancsfeldolgozó rutin)
+
+
+pain_v1.1		2007.11.21.
+
+új hibakód: 7, jelentése USART overrun error (túl gyorsan jöttek a karakterek a PC-rõl)
+(talán ettõl akadt ki eddig néha)
+
+adatküldés új formátum:
+
+		ÇÇ			// adat következik
+				
+		timestamp byte[0]	//timestamp alsó byte
+		timestamp byte[1]	//timestamp felsõ byte
+			
+		mért erõ byte[0]	//erõ alsó byte	
+		mért erõ byte[1]	//erõ felsõ byte
+		
+		CR			
+
+A timestamp csak egy egyszerû számláló (1,2,3,....), hogy megkapd 
+a hozzá tartozó idõt fel kell szorozni 4.9152ms-al (egyenlõre nem pont 
+5ms-onként küldi az adatokat). 
